@@ -1,5 +1,5 @@
 money = 0
-mop = ''
+mop = []
 
 inventory = {
     "rusty scissors" : 5,
@@ -11,18 +11,23 @@ inventory = {
 def lvl1():
     choice = input("""
                    A - Chew Grass
-                   B - Go to STore
+                   B - Buy scissors
                    What do you do? > 
                    """)
     if choice.upper() == 'A':
         global money
         money += 1
         print(f"{money}$ in the bank!")
-
+    if choice.upper() == "B":
+        if money < 5:
+            print('U BROKE')
+        else:
+            print("PURCHASED SCISSORS")
+            mop.append(1)
 
 
 def engine():
-    while mop == '':
+    while len(mop) == 0:
         lvl1()
         
 engine()
