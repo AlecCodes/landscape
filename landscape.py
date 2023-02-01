@@ -66,6 +66,48 @@ def lvl3():
             print('PURCHASED A Battery LAWNMOWER')
             mop.append(1)
 
+def lvl4():
+    global money
+    choice = input(
+        """
+        A - Cut Grass w battery lawnmower
+        B - Hire starving students
+        What do you do? >
+        """
+        )
+    if choice.upper() == "A":
+        money += 100
+        print(f"{money}$ in the bank!")
+    if choice.upper() == "B":
+        if money < 500:
+            print("Come back when u have 500 quid")
+        else:
+            money -= 500
+            print('PURCHASED A TON OF STARVING STUDENTS')
+            mop.append(1)
+
+def final():
+    global money
+    while money < 1000:
+        choice = input(
+            """
+            A - Tell students to work
+            """
+            )
+        if choice.upper() == 'A':
+            money += 250
+            print(f"{money}$ in the bank!")
+    gameover = input("""
+                    Game Over! Play again? (y/n) >
+                     """)
+    if gameover.upper() == 'Y':
+        money = 0
+        mop.clear()
+        engine()
+    if gameover.upper() == 'N':
+        exit()
+        
+    
 def engine():
     while len(mop) == 0:
         lvl1()
@@ -73,4 +115,8 @@ def engine():
         lvl2()
     while len(mop) == 2:
         lvl3()
+    while len(mop) == 3:
+        lvl4()
+    while len(mop) == 4:
+        final()
 engine()
